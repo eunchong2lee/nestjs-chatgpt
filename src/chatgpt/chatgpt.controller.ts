@@ -1,4 +1,12 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
+import { ChatgptService } from './chatgpt.service';
 
 @Controller('chatgpt')
-export class ChatgptController {}
+export class ChatgptController {
+  constructor(private chatgptService: ChatgptService) {}
+
+  @Get('/')
+  async getHealthFoodAnalytics() {
+    return this.chatgptService.postGpt();
+  }
+}
